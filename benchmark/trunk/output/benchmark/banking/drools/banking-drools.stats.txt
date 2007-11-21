@@ -1,0 +1,42 @@
+---------------------
+benchmark : Banking
+engine : drools
+Total Iterations : 5
+---------------------
+
+Iteration : 0
+-------------
+RuleLoadTime   : 2640
+DataLoadTime   : 469
+ruleFiringTime : 813
+
+Iteration : 1
+-------------
+RuleLoadTime   : 0
+DataLoadTime   : 203
+ruleFiringTime : 437
+
+Iteration : 2
+-------------
+RuleLoadTime   : 0
+DataLoadTime   : 172
+ruleFiringTime : 391
+
+Iteration : 3
+-------------
+RuleLoadTime   : 0
+DataLoadTime   : 62
+ruleFiringTime : 235
+
+Iteration : 4
+-------------
+RuleLoadTime   : 0
+DataLoadTime   : 47
+ruleFiringTime : 203
+
+--------
+Averages
+--------
+RuleLoadTimeAverage   : 2640.0
+DataLoadTimeAverage   : 190
+ruleFiringTimeAverage : 415

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="src" path="src/rules"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib1.4/antlr-runtime-3.0.jar"/>
+	<classpathentry kind="lib" path="lib1.4/core-3.2.3.v_686_R32x.jar"/>
+	<classpathentry kind="lib" path="lib1.4/drools-compiler-4.0.3.jar"/>
+	<classpathentry kind="lib" path="lib1.4/drools-core-4.0.3.jar"/>
+	<classpathentry kind="lib" path="lib1.4/mvel14-1.2.10.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

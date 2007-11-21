@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="run-banking" name="benchmark">
+
+	<property name="target" value="1.5" />
+	<property name="source" value="1.5" />
+
+	<target name="compile">
+		<mkdir dir="bin" />
+
+		<copy todir="bin">
+			<fileset dir="src/java" />
+			<fileset dir="src/rules" />
+		</copy>
+
+		<javac srcdir="src/java" destdir="bin" target="${source}" source="${target}">
+			<classpath>
+				<fileset dir="lib1.4">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="clean">
+		<mkdir dir="target" />
+		<delete>
+			<fileset dir="bin" includes="**/**" />
+		</delete>
+	</target>
+
+	<target name="run-banking" depends="compile">
+		<java classname="benchmark.ExecuteBenchmarks" fork="true">
+			<classpath>
+				<pathelement path="bin" />
+				<fileset dir="lib1.4">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+			<jvmarg value="-Xmx512M" />
+			<jvmarg value="-Xms512M" />
+			<jvmarg value="-server" />
+		</java>
+	</target>
+</project>

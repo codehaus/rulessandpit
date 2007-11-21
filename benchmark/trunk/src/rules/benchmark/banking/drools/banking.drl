@@ -1,0 +1,53 @@
+package simple
+
+import benchmark.banking.model.Cashflow;
+import benchmark.banking.model.AccountingPeriod;
+import benchmark.banking.model.UpdatingAccount;
+import benchmark.banking.model.Account;
+
+global java.io.PrintStream stdout;
+
+rule "Test 01 - Credit Cashflow"
+	salience 100
+	when
+		AccountingPeriod( $start : start, $end : end )
+		not AccountingPeriod( start < $start)		
+		$cashflow : Cashflow( $account : account, date <= $end && >= $start, $amount : amount, type==Cashflow.CREDIT )
+	then 
+		//System.out.println("Credit "+$amount);
+		$account.setBalance($account.getBalance() + $amount);
+		retract($cashflow);
+end
+
+rule "Test 01 - Debit Cashflow"
+	salience 100
+	when
+		AccountingPeriod( $start : start, $end : end )
+		not AccountingPeriod( start < $start)		
+		$cashflow : Cashflow( $account : account, date <= $end && >= $start, $amount : amount, type==Cashflow.DEBIT )
+	then 
+		//System.out.println("Debit "+$amount);
+		$account.setBalance($account.getBalance() - $amount);
+		retract($cashflow);
+end
+
+rule "Test 01 - Print Balance"
+	salience 90
+	when
+		AccountingPeriod( $start : start, $end : end )
+		not AccountingPeriod( start < $start)
+		UpdatingAccount( $accountNo : accountNo, $account : account)
+	then
+		stdout.println("Period End: "+$end);
+		stdout.println("Account "+$accountNo+" - balance: "+$account.getBalance());
+		stdout.println();
+end
+
+rule "Test 01 - Retract Period"
+	salience 80
+	when
+		$accountingPeriod : AccountingPeriod( $start : start, $end : end )
+		not AccountingPeriod( start < $start)
+	then
+		retract($accountingPeriod);
+end
